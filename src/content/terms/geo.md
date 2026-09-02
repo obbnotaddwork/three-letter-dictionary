@@ -29,7 +29,4 @@ AI検索やAI回答で正しく取り上げられるための整備です。
 
 ## ③ もっと知りたい人向け
 
-- 公式サイト/公式ドキュメント:
-  - [Google 検索のAI Overviews 関連情報](https://developers.google.com/search/docs/appearance/ai-overviews?hl=ja)
-  - [OpenAI Platform Docs](https://platform.openai.com/docs)
-
+この用語は、特定の団体が定める単一の公式仕様を持たない概念です。まずは上の②の理解を土台に、ページ下部の「関連用語」から周辺の言葉をたどると、実務での位置づけがつかみやすくなります。

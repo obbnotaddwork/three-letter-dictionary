@@ -29,7 +29,7 @@ related: [ctr, cta, cvr, geo]
 
 ## ③ もっと知りたい人向け
 
-- 公式サイト/公式ドキュメント:
-  - [Google 検索セントラル](https://developers.google.com/search/docs?hl=ja)
-  - [Google Search Console ヘルプ](https://support.google.com/webmasters/)
-
+- 公式ガイド:
+  - [SEOスターターガイド｜Google 検索セントラル](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ja) ── Google公式のSEO入門
+- 補足:
+  - [検索の仕組み｜Google](https://www.google.com/search/howsearchworks/?hl=ja) ── 検索エンジンの動作

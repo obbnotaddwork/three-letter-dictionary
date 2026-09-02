@@ -29,4 +29,4 @@ related: [dmp, crm, cvr, ltv]
 
 ## ③ もっと知りたい人向け
 
-- 公式サイト/公式ドキュメント: [Google検索: Customer Data Platform official documentation](https://www.google.com/search?q=Customer+Data+Platform+official+documentation)
+この用語は、特定の団体が定める単一の公式仕様を持たない概念です。まずは上の②の理解を土台に、ページ下部の「関連用語」から周辺の言葉をたどると、実務での位置づけがつかみやすくなります。
