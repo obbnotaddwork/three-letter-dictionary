@@ -1,8 +1,8 @@
 /**
- * ヘッダー「トップ / タグ」のどちらを現在地として強調するか。
+ * ヘッダー「トップ / タグ / トレーニング」のどれを現在地として強調するか。
  * base 付きパス（GitHub Pages）でも先頭セグメントを除いて判定する。
  */
-export type HeaderNavTab = 'top' | 'tags';
+export type HeaderNavTab = 'top' | 'tags' | 'training';
 
 export function activeHeaderNav(
   pathname: string,
@@ -23,5 +23,6 @@ export function activeHeaderNav(
   const rest = parts.slice(offset);
   if (rest.length === 0) return 'top';
   if (rest[0] === 'tags') return 'tags';
+  if (rest[0] === 'training') return 'training';
   return null;
 }
