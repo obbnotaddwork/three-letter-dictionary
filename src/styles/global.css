@@ -676,12 +676,19 @@ details.term-tier[data-tier='intermediate'] .markdown-body hr {
     'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', 'Times New Roman', serif;
 }
 
+.site-header.site-header--dictionary .header-tab-wrap {
+  /* 栞（::after のリボン）をこのタブの真下に垂らすための基点。
+     .header-tab 自体は clip-path で切り抜かれており、その内側に
+     ::after を置くとタブの外形と一緒にクリップされて見えなくなるため、
+     clip-path を持たないこの外側の要素に付ける。 */
+  position: relative;
+  display: inline-block;
+}
+
 .site-header.site-header--dictionary .header-tab {
   /* インラインのままだと clip-path が効かないことがある */
   display: inline-block;
   vertical-align: middle;
-  /* 栞（::after のリボン）をこのタブの真下に垂らすための基点 */
-  position: relative;
   /* 底辺水平・耳＋中央V */
   -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 6%, 50% 36%, 0% 6%);
   clip-path: polygon(0% 100%, 100% 100%, 100% 6%, 50% 36%, 0% 6%);
@@ -732,7 +739,7 @@ details.term-tier[data-tier='intermediate'] .markdown-body hr {
 
 /* 現在地タブに挿さった栞（リボン）。「今どのページを開いているか」を
    辞書に挟んだブックマークのイメージで示す。 */
-.site-header.site-header--dictionary .header-tab.is-active::after {
+.site-header.site-header--dictionary .header-tab-wrap.is-active::after {
   content: '';
   position: absolute;
   top: 100%;
