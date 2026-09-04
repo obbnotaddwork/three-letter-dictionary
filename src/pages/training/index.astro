@@ -63,12 +63,59 @@ const termsBaseHref = withBase('terms/');
       </div>
 
       <div class="training-setup-block">
+        <h2 class="training-block-title">モード</h2>
+        <div class="training-mode-list">
+          <label class="training-mode-option">
+            <input type="radio" name="training-mode" value="normal" checked />
+            <span>
+              <strong>通常</strong>
+              <small>自分のペースで復習。不正解でも正解するまで再挑戦できます。</small>
+            </span>
+          </label>
+          <label class="training-mode-option">
+            <input type="radio" name="training-mode" value="time-attack-total" />
+            <span>
+              <strong>タイムアタック：制限時間内にできるだけ正解</strong>
+              <small>時間切れまで、次々と問題に挑戦し続けます。</small>
+            </span>
+          </label>
+          <label class="training-mode-option">
+            <input type="radio" name="training-mode" value="time-attack-per-question" />
+            <span>
+              <strong>タイムアタック：1問ごとに秒数制限</strong>
+              <small>制限時間内に答えないと自動的に次の問題へ進みます。</small>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="training-setup-block" id="count-block">
         <h2 class="training-block-title">出題数</h2>
         <select id="training-count" class="training-select">
           <option value="5">5問</option>
           <option value="10" selected>10問</option>
           <option value="20">20問</option>
           <option value="999">できる限り全部</option>
+        </select>
+      </div>
+
+      <div class="training-setup-block" id="total-time-block" hidden>
+        <h2 class="training-block-title">制限時間</h2>
+        <select id="training-total-time" class="training-select">
+          <option value="30">30秒</option>
+          <option value="60" selected>60秒</option>
+          <option value="90">90秒</option>
+          <option value="120">120秒</option>
+        </select>
+      </div>
+
+      <div class="training-setup-block" id="per-question-time-block" hidden>
+        <h2 class="training-block-title">1問あたりの制限時間</h2>
+        <select id="training-per-question-time" class="training-select">
+          <option value="5">5秒</option>
+          <option value="10" selected>10秒</option>
+          <option value="15">15秒</option>
+          <option value="20">20秒</option>
         </select>
       </div>
 
@@ -94,6 +141,7 @@ const termsBaseHref = withBase('terms/');
       <p class="training-progress">
         <span id="training-progress-text">1 / 10</span>
         <span class="training-direction-hint" id="training-direction-hint"></span>
+        <span id="training-timer" class="training-timer" hidden></span>
       </p>
       <p class="training-instruction" id="training-instruction"></p>
       <h2 id="training-prompt" class="training-prompt"></h2>
@@ -188,6 +236,43 @@ const termsBaseHref = withBase('terms/');
     cursor: not-allowed;
   }
 
+  .training-mode-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .training-mode-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    cursor: pointer;
+  }
+
+  .training-mode-option input {
+    margin-top: 0.3rem;
+    flex-shrink: 0;
+  }
+
+  .training-mode-option span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .training-mode-option small {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .training-mode-option:has(input:checked) {
+    border-color: var(--link);
+  }
+
   .training-select {
     padding: 0.5rem 0.75rem;
     font-size: 0.95rem;
@@ -249,6 +334,14 @@ const termsBaseHref = withBase('terms/');
     font-size: 0.88rem;
     font-weight: 700;
     margin: 0 0 0.75rem;
+  }
+
+  .training-timer {
+    font-weight: 800;
+    color: var(--text);
+    background: var(--tag-pill-bg, var(--surface));
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
   }
 
   .training-instruction {
