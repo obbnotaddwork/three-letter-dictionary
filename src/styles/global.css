@@ -531,6 +531,9 @@ details.term-tier[data-tier='intermediate'] .markdown-body hr {
   /* タブ：縁と下線（太めは filter / box-shadow の px で維持） */
   --dict-tab-ring-idle: rgba(12, 24, 41, 0.82);
   --dict-tab-bar-idle: rgba(12, 24, 41, 0.88);
+  /* 現在地タブに垂らす栞（リボン）の色 */
+  --dict-ribbon: #a5342c;
+  --dict-ribbon-shade: #7e2620;
   /* PNG 内の上下の白を clip で削る */
   --dict-brand-crop-top: 16%;
   --dict-brand-crop-bottom: 16%;
@@ -677,6 +680,8 @@ details.term-tier[data-tier='intermediate'] .markdown-body hr {
   /* インラインのままだと clip-path が効かないことがある */
   display: inline-block;
   vertical-align: middle;
+  /* 栞（::after のリボン）をこのタブの真下に垂らすための基点 */
+  position: relative;
   /* 底辺水平・耳＋中央V */
   -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 6%, 50% 36%, 0% 6%);
   clip-path: polygon(0% 100%, 100% 100%, 100% 6%, 50% 36%, 0% 6%);
@@ -723,6 +728,24 @@ details.term-tier[data-tier='intermediate'] .markdown-body hr {
   box-shadow:
     0 5px 0 0 var(--dict-ink),
     inset 0 -4px 0 0 var(--dict-ink);
+}
+
+/* 現在地タブに挿さった栞（リボン）。「今どのページを開いているか」を
+   辞書に挟んだブックマークのイメージで示す。 */
+.site-header.site-header--dictionary .header-tab.is-active::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0.6rem;
+  height: 1.5rem;
+  background: linear-gradient(180deg, var(--dict-ribbon) 0%, var(--dict-ribbon-shade) 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 68%, 50% 100%, 0 68%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 68%, 50% 100%, 0 68%);
+  transform: translateX(-50%);
+  filter: drop-shadow(0 2px 2px rgba(12, 24, 41, 0.28));
+  pointer-events: none;
+  z-index: 1;
 }
 
 .site-header.site-header--dictionary .theme-toggle {
