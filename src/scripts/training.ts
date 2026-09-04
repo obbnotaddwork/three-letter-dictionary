@@ -137,6 +137,7 @@ export function initTraining(): void {
   const nextBtn = document.getElementById('training-next-btn');
 
   const scoreEl = document.getElementById('training-score');
+  const scoreNoteEl = document.getElementById('training-score-note');
   const missedWrap = document.getElementById('training-missed-wrap');
   const missedListEl = document.getElementById('training-missed-list');
   const retrySameBtn = document.getElementById('training-retry-same-btn');
@@ -237,7 +238,10 @@ export function initTraining(): void {
       const remain = Math.max(0, Math.ceil((session.questionDeadline - now) / 1000));
       updateTimerDisplay(remain);
       if (remain <= 0) {
-        clearTimer();
+        // ここで clearTimer() を呼ぶとセッション全体の setInterval が止まり、
+        // 次の設問以降タイマー表示が更新されなくなる（設問切り替え後にカウントが
+        // 止まって見える不具合の原因）。個別の設問タイムアウト処理だけ行い、
+        // interval 自体は finishSession() まで生かしたままにする。
         onQuestionTimeout();
       }
     }
@@ -387,12 +391,17 @@ export function initTraining(): void {
       return;
     }
 
+    if (kind === 'timeout') {
+      // 正誤・正解は表示しない（時間切れは淡々と次へ進む）
+      feedbackEl.textContent = '時間切れです。次の問題へ進みます。';
+      feedbackEl.classList.add('is-wrong');
+      feedbackEl.hidden = false;
+      return;
+    }
+
     const correctLabel = choiceLabel(q.term, q.direction);
     const detailHref = `${termsBaseHref}${q.term.slug}/`;
-    feedbackEl.innerHTML =
-      kind === 'correct'
-        ? `正解！ 「${escapeHtml(correctLabel)}」`
-        : `時間切れ。正解は「${escapeHtml(correctLabel)}」でした。`;
+    feedbackEl.innerHTML = `正解！ 「${escapeHtml(correctLabel)}」`;
     const link = document.createElement('a');
     link.href = detailHref;
     link.target = '_blank';
@@ -402,7 +411,7 @@ export function initTraining(): void {
     feedbackEl.appendChild(document.createElement('br'));
     feedbackEl.appendChild(link);
     feedbackEl.hidden = false;
-    feedbackEl.classList.add(kind === 'correct' ? 'is-correct' : 'is-wrong');
+    feedbackEl.classList.add('is-correct');
   }
 
   function onChoiceClick(idx: number): void {
@@ -471,7 +480,7 @@ export function initTraining(): void {
 
     const buttons = Array.from(choicesEl!.querySelectorAll<HTMLButtonElement>('.training-choice'));
     buttons.forEach((b) => (b.disabled = true));
-    buttons[q.correctIndex]?.classList.add('is-correct');
+    // 正誤は表示しない方針のため、正解ボタンのハイライトは行わない
 
     showFeedback('timeout', q);
     nextBtn!.hidden = true;
@@ -479,7 +488,7 @@ export function initTraining(): void {
     const modeAtClick = session.mode;
     window.setTimeout(() => {
       if (session && session.mode === modeAtClick) onNextClick();
-    }, 1400);
+    }, 900);
   }
 
   function onNextClick(): void {
@@ -506,14 +515,24 @@ export function initTraining(): void {
     showSection('result');
 
     const elapsedSec = Math.round((Date.now() - session.startedAt) / 1000);
+    let scoreLabel = '問正解';
+    let scoreNote = '';
+    if (session.mode === 'time-attack-total') {
+      scoreLabel = '問正解';
+      scoreNote = `${session.totalTimeLimitSec}秒間で ${session.completedCount}問に挑戦`;
+    } else if (session.mode === 'time-attack-per-question') {
+      scoreLabel = `/ ${session.questions.length} 問正解`;
+      scoreNote = `合計 ${elapsedSec}秒`;
+    } else {
+      scoreLabel = `/ ${session.questions.length} 問正解`;
+      scoreNote = '';
+    }
     if (scoreEl) {
-      if (session.mode === 'time-attack-total') {
-        scoreEl.textContent = `${session.totalTimeLimitSec}秒で ${session.correct}問正解（挑戦 ${session.completedCount}問）`;
-      } else if (session.mode === 'time-attack-per-question') {
-        scoreEl.textContent = `${session.correct} / ${session.questions.length} 問正解（合計 ${elapsedSec}秒）`;
-      } else {
-        scoreEl.textContent = `${session.correct} / ${session.questions.length} 問正解`;
-      }
+      scoreEl.innerHTML = `<span class="training-score-number">${session.correct}</span><span class="training-score-label">${escapeHtml(scoreLabel)}</span>`;
+    }
+    if (scoreNoteEl) {
+      scoreNoteEl.textContent = scoreNote;
+      scoreNoteEl.hidden = scoreNote.length === 0;
     }
 
     const wrongTerms = allTerms.filter((t) => session!.wrongThisRun.has(t.slug));
