@@ -111,27 +111,33 @@ const useGa = Boolean(gaId);
         </a>
         <div class="header-actions">
           <nav class="header-nav header-nav--index" aria-label="メイン">
-            <a
-              class:list={['header-tab', headerNavActive === 'top' && 'is-active']}
-              href={withBase('')}
-              aria-current={headerNavActive === 'top' ? 'page' : undefined}
-            >
-              トップ
-            </a>
-            <a
-              class:list={['header-tab', headerNavActive === 'tags' && 'is-active']}
-              href={withBase('tags/')}
-              aria-current={headerNavActive === 'tags' ? 'page' : undefined}
-            >
-              タグ
-            </a>
-            <a
-              class:list={['header-tab', headerNavActive === 'training' && 'is-active']}
-              href={withBase('training/')}
-              aria-current={headerNavActive === 'training' ? 'page' : undefined}
-            >
-              トレーニング
-            </a>
+            <span class:list={['header-tab-wrap', headerNavActive === 'top' && 'is-active']}>
+              <a
+                class:list={['header-tab', headerNavActive === 'top' && 'is-active']}
+                href={withBase('')}
+                aria-current={headerNavActive === 'top' ? 'page' : undefined}
+              >
+                トップ
+              </a>
+            </span>
+            <span class:list={['header-tab-wrap', headerNavActive === 'tags' && 'is-active']}>
+              <a
+                class:list={['header-tab', headerNavActive === 'tags' && 'is-active']}
+                href={withBase('tags/')}
+                aria-current={headerNavActive === 'tags' ? 'page' : undefined}
+              >
+                タグ
+              </a>
+            </span>
+            <span class:list={['header-tab-wrap', headerNavActive === 'training' && 'is-active']}>
+              <a
+                class:list={['header-tab', headerNavActive === 'training' && 'is-active']}
+                href={withBase('training/')}
+                aria-current={headerNavActive === 'training' ? 'page' : undefined}
+              >
+                トレーニング
+              </a>
+            </span>
           </nav>
           <ThemeToggle />
         </div>
