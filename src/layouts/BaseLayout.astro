@@ -125,6 +125,13 @@ const useGa = Boolean(gaId);
             >
               タグ
             </a>
+            <a
+              class:list={['header-tab', headerNavActive === 'training' && 'is-active']}
+              href={withBase('training/')}
+              aria-current={headerNavActive === 'training' ? 'page' : undefined}
+            >
+              トレーニング
+            </a>
           </nav>
           <ThemeToggle />
         </div>
