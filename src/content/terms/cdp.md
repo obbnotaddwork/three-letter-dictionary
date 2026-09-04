@@ -3,7 +3,7 @@ titleJa: CDP
 titleEn: Customer Data Platform
 titleEnJa: カスタマーデータプラットフォーム
 tags: [データ, 業務システム]
-related: [dmp, crm, cvr, ltv]
+related: [dmp, crm, cvr, ltv, aem]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

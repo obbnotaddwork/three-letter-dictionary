@@ -3,7 +3,7 @@ titleJa: CVR
 titleEn: Conversion Rate
 titleEnJa: コンバージョン率
 tags: [データ]
-related: [ctr, cta, roi, seo, ltv, clv, dmp, cdp]
+related: [ctr, cta, roi, seo, ltv, clv, dmp, cdp, nps]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

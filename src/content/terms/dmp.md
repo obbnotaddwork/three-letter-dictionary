@@ -3,7 +3,7 @@ titleJa: DMP
 titleEn: Data Management Platform
 titleEnJa: データマネジメントプラットフォーム
 tags: [データ, 業務運用]
-related: [cdp, cvr, ctr, cta]
+related: [cdp, cvr, ctr, cta, aem]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

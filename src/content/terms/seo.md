@@ -3,7 +3,7 @@ titleJa: SEO
 titleEn: Search Engine Optimization
 titleEnJa: 検索エンジン最適化
 tags: [データ, 業務運用]
-related: [ctr, cta, cvr, geo]
+related: [ctr, cta, cvr, geo, aem]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

@@ -3,7 +3,7 @@ titleJa: NDA
 titleEn: Non-Disclosure Agreement
 titleEnJa: 秘密保持契約
 tags: [法務]
-related: [bcp, rfp, csr]
+related: [bcp, rfp, csr, pii, sla]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

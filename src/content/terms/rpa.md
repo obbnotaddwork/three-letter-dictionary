@@ -3,7 +3,7 @@ titleJa: RPA
 titleEn: Robotic Process Automation
 titleEnJa: ロボットによる業務自動化
 tags: [業務運用]
-related: [api, erp]
+related: [api, erp, ocr]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

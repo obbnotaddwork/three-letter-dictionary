@@ -3,7 +3,7 @@ titleJa: GUI
 titleEn: Graphical User Interface
 titleEnJa: グラフィカル・ユーザー・インタフェース
 tags: [開発]
-related: [app, cli, ide]
+related: [app, cli, ide, bff]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

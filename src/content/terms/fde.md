@@ -3,7 +3,7 @@ titleJa: FDE
 titleEn: Forward Deployed Engineer
 titleEnJa: フォワード・デプロイド・エンジニア
 tags: [開発, プロジェクト]
-related: [api, sdk, poc, uat]
+related: [api, sdk, poc, uat, iam, mfa, pin, tls]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

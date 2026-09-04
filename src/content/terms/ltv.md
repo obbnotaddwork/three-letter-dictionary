@@ -3,7 +3,7 @@ titleJa: LTV
 titleEn: Customer Lifetime Value
 titleEnJa: 顧客生涯価値
 tags: [経営, データ]
-related: [cvr, ctr, roi, clv, cdp]
+related: [cvr, ctr, roi, clv, cdp, mau, nps]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

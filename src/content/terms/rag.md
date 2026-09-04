@@ -3,7 +3,7 @@ titleJa: RAG
 titleEn: Retrieval-Augmented Generation
 titleEnJa: 検索拡張生成
 tags: [AI]
-related: [geo, llm, mcp, sql]
+related: [geo, llm, mcp, sql, ocr]
 ---
 
 ## ① 非エンジニア向けのざっくり概要

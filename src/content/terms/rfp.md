@@ -3,7 +3,7 @@ titleJa: RFP
 titleEn: Request for Proposal
 titleEnJa: 提案依頼書
 tags: [プロジェクト]
-related: [nda, poc, roi]
+related: [nda, poc, roi, sla]
 ---
 
 ## ① 非エンジニア向けのざっくり概要
