@@ -134,7 +134,12 @@ const termsBaseHref = withBase('terms/');
   </main>
 </BaseLayout>
 
-<style>
+<style is:global>
+  /*
+   * このページの選択肢ボタン等はクライアントJSで動的に生成するため、
+   * Astroのスコープ付きCSS（data-astro-cid-*）が効かない。
+   * クラス名は training- 接頭辞で他コンポーネントと衝突しないため is:global にする。
+   */
   .training-panel {
     margin-top: 1.5rem;
   }
