@@ -527,10 +527,8 @@ details.term-tier[data-tier='intermediate'] .markdown-body hr {
   --dict-rule-strong: rgba(12, 24, 41, 0.42);
   /* 画像と同系：ごく薄い紺みを載せた紙（旧トーン） */
   --dict-tab-idle: #eef1f5;
-  --dict-tab-active: #f7f8fa;
-  /* タブ：縁と下線（太めは filter / box-shadow の px で維持） */
-  --dict-tab-ring-idle: rgba(12, 24, 41, 0.82);
-  --dict-tab-bar-idle: rgba(12, 24, 41, 0.88);
+  /* タブ：非アクティブの縁色（現在地は --dict-ink の塗りつぶしで示す） */
+  --dict-tab-ring-idle: rgba(12, 24, 41, 0.55);
   /* 現在地タブに垂らす栞（リボン）の色 */
   --dict-ribbon: #a5342c;
   --dict-ribbon-shade: #7e2620;
@@ -686,14 +684,14 @@ details.term-tier[data-tier='intermediate'] .markdown-body hr {
 }
 
 .site-header.site-header--dictionary .header-tab {
-  /* インラインのままだと clip-path が効かないことがある */
+  /* 丸みを帯びた索引タブ（候補A）。V字カットはやめ、
+     現在地は紺の塗りつぶし＋白抜き文字で示す。 */
   display: inline-block;
   vertical-align: middle;
-  /* 底辺水平・耳＋中央V */
-  -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 6%, 50% 36%, 0% 6%);
-  clip-path: polygon(0% 100%, 100% 100%, 100% 6%, 50% 36%, 0% 6%);
-  /* 上は V 下まで空け、下は太線ぶん確保 → ラベルはやや下寄せ */
-  padding: 0.72rem 0.95rem 0.42rem;
+  border-radius: 8px 8px 0 0;
+  border: 1.5px solid var(--dict-tab-ring-idle);
+  border-bottom: none;
+  padding: 0.72rem 0.95rem 0.5rem;
   font-size: 0.86rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -701,40 +699,35 @@ details.term-tier[data-tier='intermediate'] .markdown-body hr {
   text-decoration: none;
   color: var(--dict-ink);
   background: var(--dict-tab-idle);
-  border: none;
-  /* 縁取り（drop-shadow は clip に沿う）＋下線を太く濃く */
-  filter: drop-shadow(0 0 0 3.5px var(--dict-tab-ring-idle));
-  box-shadow: 0 5px 0 0 var(--dict-tab-bar-idle);
+  transform: translateY(1px);
   transition:
     background 0.12s,
-    filter 0.12s,
+    border-color 0.12s,
+    color 0.12s,
+    transform 0.12s,
     box-shadow 0.12s;
 }
 
 .site-header.site-header--dictionary .header-tab:hover {
   background: #e8ecf2;
+  border-color: var(--dict-ink);
   color: var(--dict-ink);
   text-decoration: none;
-  filter: drop-shadow(0 0 0 3.5px var(--dict-tab-ring-idle));
-  box-shadow: 0 5px 0 0 var(--dict-tab-bar-idle);
 }
 
 .site-header.site-header--dictionary .header-tab.is-active {
-  background: var(--dict-tab-active);
-  /* 700 にするとラベル幅が変わり、flex でロゴが横に跳ぶことがある */
+  background: var(--dict-ink);
+  border-color: var(--dict-ink);
+  color: var(--dict-paper);
   font-weight: 600;
-  filter: drop-shadow(0 0 0 3.5px var(--dict-ink));
-  box-shadow:
-    0 5px 0 0 var(--dict-ink),
-    inset 0 -4px 0 0 var(--dict-ink);
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(12, 24, 41, 0.18);
 }
 
 .site-header.site-header--dictionary .header-tab.is-active:hover {
-  background: var(--dict-tab-active);
-  filter: drop-shadow(0 0 0 3.5px var(--dict-ink));
-  box-shadow:
-    0 5px 0 0 var(--dict-ink),
-    inset 0 -4px 0 0 var(--dict-ink);
+  background: var(--dict-ink);
+  border-color: var(--dict-ink);
+  color: var(--dict-paper);
 }
 
 /* 現在地タブに挿さった栞（リボン）。「今どのページを開いているか」を
